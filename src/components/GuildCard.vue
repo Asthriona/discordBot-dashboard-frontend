@@ -18,7 +18,7 @@ defineProps<{
     <div class="flex items-center gap-3">
       <img
         v-if="guild.icon"
-        :src="`https://cdn.discordapp.com/guilds/${guild.id}/icons/${guild.icon}.png`"
+        :src="`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`"
         class="w-12 h-12 rounded-full"
       />
       <div v-else class="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center text-lg font-bold">
