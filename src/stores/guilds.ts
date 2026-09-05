@@ -9,6 +9,7 @@ interface Guild {
   owner: boolean
   permissions: number
   hasBot: boolean
+  inviteUrl: string
 }
 
 export const useGuildStore = defineStore('guilds', () => {

@@ -6,28 +6,30 @@ defineProps<{
     icon: string | null
     owner: boolean
     permissions: number
+    hasBot: boolean
+    inviteUrl: string
   }
 }>()
 </script>
 
 <template>
-  <router-link
-    :to="`/guild/${guild.id}`"
-    class="block bg-zinc-900 border border-zinc-800 rounded-xl p-4 hover:border-indigo-500/50 hover:bg-zinc-900/80 transition-all"
-  >
-    <div class="flex items-center gap-3">
-      <img
-        v-if="guild.icon"
-        :src="`https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png`"
-        class="w-12 h-12 rounded-full"
-      />
-      <div v-else class="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center text-lg font-bold">
-        {{ guild.name.charAt(0) }}
-      </div>
-      <div class="min-w-0">
-        <h3 class="font-medium text-white truncate">{{ guild.name }}</h3>
-        <p class="text-xs text-zinc-500">ID: {{ guild.id }}</p>
-      </div>
-    </div>
-  </router-link>
+  <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 hover:border-indigo-500/50 hover:bg-zinc-900/80 transition-all">
+    <h3 class="font-medium text-white truncate mb-4">{{ guild.name }}</h3>
+    <router-link
+      v-if="guild.hasBot"
+      :to="`/guild/${guild.id}`"
+      class="block text-center text-sm text-indigo-400 hover:text-white border border-indigo-500/50 hover:bg-indigo-600 font-medium rounded-lg px-4 py-2 transition-colors"
+    >
+      Dashboard
+    </router-link>
+    <a
+      v-else
+      :href="guild.inviteUrl"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="block text-center text-sm bg-indigo-600 hover:bg-indigo-500 text-white font-medium rounded-lg px-4 py-2 transition-colors"
+    >
+      Add Bot
+    </a>
+  </div>
 </template>
